@@ -1,0 +1,16 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+importlib-metadata = "*"
+importlib-resources = "*"
+ipdb = "*"
+faker = "*"
+pytest = "*"
+sqlalchemy = "*"
+
+
+[requires]
+python_full_version = "3.12.2"
