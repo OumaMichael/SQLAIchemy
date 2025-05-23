@@ -1,0 +1,56 @@
+
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE Employee (
+    employee_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    address TEXT,
+    contact TEXT
+);
+
+
+CREATE TABLE Pay (
+    pay_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    employee_id INTEGER NOT NULL,
+    job_title TEXT NOT NULL,
+    hire_date DATE NOT NULL,
+    salary REAL NOT NULL,
+    bonus REAL NOT NULL,
+    FOREIGN KEY (employee_id) REFERENCES Employee(employee_id) ON DELETE CASCADE
+);
+
+
+INSERT INTO Employee (name, address, contact) VALUES 
+('Joshua', 'Westlands', 'Josh@gmail.com'),
+('Lewis', 'Nairobi west', 'Lee@gmail.com');
+
+
+INSERT INTO Pay (employee_id, job_title, hire_date, salary, bonus) VALUES 
+(4, 'Data Analyst', '2024-07-05', 6000, 5000),
+(2, 'DevOps', '2025-02-05', 9000, 1500),
+(3, 'Software Eng.', '2025-05-05', 8000, 500);
+
+INSERT INTO Pay (employee_id, job_title, hire_date, salary, bonus) VALUES 
+ (1, 'HR', '2024-05-05', 9000, 5000),
+ (2, 'Software Eng.', '2025-05-05', 8000, 500);
+DELETE FROM Pay WHERE pay_id=2;
+DELETE FROM Pay WHERE pay_id=1;
+###ALTER TABLE Pay ALTER COLUMN employee_id TYPE INTEGER NOT NULL;
+DROP TABLE Pay;
+DROP TABLE Employee;
+
+###JOIN
+SELECT * FROM * JOIN* ON (Uniquekey);
+CREATE VIEW EmployeePayReport AS
+SELECT
+	e.name,
+	e.address,
+	e.contact,
+	p.job_title,
+	p.hire_date,
+	p.salary,
+	p.bonus
+FROM
+	Employee e
+JOIN
+	Pay p ON e.employee_id=p.employee_id;
